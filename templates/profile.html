@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="container mt-5 ">
+
+    <!-- Cards -->
+    <div class="row g-4">
+
+        <!-- Notes -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow h-100 text-center p-4">
+                <h3>Notes Making</h3>
+                <p>Create and manage your notes easily</p>
+                <a href="{% url 'notes' %}" class="btn btn-primary mt-3">
+                    Open Notes
+                </a>
+            </div>
+        </div>
+
+        <!-- Todo -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow h-100 text-center p-4">
+                <h3>Todo List</h3>
+                <p>Track your tasks and stay productive</p>
+                <a href="{% url 'todo' %}" class="btn btn-success mt-3">
+                    Open Todo
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

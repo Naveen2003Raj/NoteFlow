@@ -1,0 +1,14 @@
+{%include "index.html"%}
+{%block content%}
+{%load crispy_forms_tags%}
+<div class="container  mt-4" style="width: 500px;">
+<h2 class="text-center mb-3">Register Page</h2>
+<form action="" method="post">
+    {%csrf_token%}
+    {{form|crispy}}
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+<p>Already have a Account <a href="{%url 'Login'%}">Click Here</a></p>
+</div>
+
+{%endblock%}

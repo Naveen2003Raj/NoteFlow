@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg bg-dark border-bottom">
+  <div class="container-fluid">
+
+    <!-- Brand -->
+    <a class="navbar-brand text-secondary fs-5" href="{% url 'Page' %}">
+      <i class="bi bi-box-seam"></i> NoteFlow
+    </a>
+
+    <button class="navbar-toggler bg-primary" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Left Links -->
+      <ul class="navbar-nav mb-2 mb-lg-0 gap-2 fs-6">
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{% url 'Page' %}">
+            <i class="bi bi-house"></i> Home
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{% url 'Register' %}">
+            <i class="bi bi-people-fill"></i> Register
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right Side (Push to end) -->
+      <div class="ms-auto d-flex align-items-center">
+
+        {% if user.is_authenticated %}
+          <span class="text-light me-3">Hello, {{ user.username }}</span>
+
+          <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">
+            Logout
+          </a>
+        {% else %}
+          <a href="{% url 'Login' %}" class="btn btn-primary btn-sm">
+            Login
+          </a>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</nav>

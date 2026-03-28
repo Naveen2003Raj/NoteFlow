@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between">
+        <h2>Todo List</h2>
+        <button class="btn btn-primary" onclick="toggleForm()">➕</button>
+    </div>
+
+    <!-- Form -->
+    <div id="todoForm" style="display:none;" class="mt-3">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="task" class="form-control" placeholder="Enter task" required>
+
+            <select name="status" class="form-control mt-2">
+                <option value="active">Active</option>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+            </select>
+
+            <button class="btn btn-success mt-2">Add</button>
+        </form>
+    </div>
+
+    <!-- Todo Cards -->
+    <div class="row mt-4">
+
+        {% for todo in todos %}
+
+        <!-- 🔥 Dynamic Color -->
+        <div class="col-md-4 mb-3">
+            <div class="card p-3 shadow
+                {% if todo.status == 'active' %}
+                    bg-warning
+                {% elif todo.status == 'pending' %}
+                    bg-info
+                {% elif todo.status == 'completed' %}
+                    bg-success text-white
+                {% endif %}
+            ">
+
+                <small>{{ todo.created_at }}</small>
+                <h5>{{ todo.task }}</h5>
+                <p>Status: {{ todo.status }}</p>
+
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'edit_todo' todo.id %}" class="btn btn-dark btn-sm">Edit</a>
+                    <a href="{% url 'delete_todo' todo.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script>
+function toggleForm() {
+    let form = document.getElementById("todoForm");
+    form.style.display = form.style.display === "none" ? "block" : "none";
+}
+</script>
+
+{% endblock %}

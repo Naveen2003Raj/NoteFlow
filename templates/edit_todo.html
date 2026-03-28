@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2>Edit Task</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="task" value="{{ todo.task }}" class="form-control">
+
+        <select name="status" class="form-control mt-2">
+            <option value="active" {% if todo.status == 'active' %}selected{% endif %}>Active</option>
+            <option value="pending" {% if todo.status == 'pending' %}selected{% endif %}>Pending</option>
+            <option value="completed" {% if todo.status == 'completed' %}selected{% endif %}>Completed</option>
+        </select>
+
+        <button class="btn btn-success mt-3">Update</button>
+    </form>
+</div>
+
+{% endblock %}
